@@ -1,33 +1,332 @@
+.journal-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.journal-header {
+  position: relative;
+}
+
+.journal-flower {
+  position: relative;
+  transform: rotate(-8deg);
+  border: 1px solid #f4d8cb;
+  background: #fff0e8;
+  box-shadow:
+    0 3px 0 #f7e3d8,
+    0 8px 18px rgb(143 93 71 / 10%);
+}
+
+.journal-flower::after {
+  position: absolute;
+  top: -8px;
+  right: -9px;
+  color: #e6a988;
+  font-size: 15px;
+  content: "✦";
+}
+
+.journal-eyebrow {
+  color: #ba8069;
+}
+
+.journal-title {
+  color: #624c40;
+  font-family: "Georgia", "Apple SD Gothic Neo", "Malgun Gothic", serif;
+  letter-spacing: -0.055em;
+}
+
+.journal-subtitle,
+.section-caption {
+  color: #a28b7e;
+}
+
+.section-title {
+  color: #695449;
+}
+
+.paper-card,
+.diary-card {
+  position: relative;
+  border: 1px solid #ecdfcf;
+  background-color: #fffdf8;
+  background-image:
+    radial-gradient(ellipse at 12% 0%, rgb(255 246 230 / 60%), transparent 45%),
+    repeating-linear-gradient(
+      0deg,
+      rgb(164 129 99 / 1.8%) 0,
+      rgb(164 129 99 / 1.8%) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  box-shadow:
+    0 2px 3px rgb(100 70 50 / 4%),
+    0 14px 36px -26px rgb(103 68 48 / 38%);
+}
+
+.write-card {
+  margin-top: 12px;
+}
+
+.write-card::before {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  width: 82px;
+  height: 23px;
+  transform: translateX(-50%) rotate(-2deg);
+  border-right: 1px solid rgb(198 157 128 / 15%);
+  border-left: 1px solid rgb(198 157 128 / 15%);
+  background: rgb(246 215 190 / 75%);
+  content: "";
+}
+
+.write-icon {
+  border: 1px solid #f0dfc8;
+  background: #fff1df;
+}
+
 .emotion-choice {
   min-width: 0;
+  border-color: #eee5da;
+  background-color: rgb(255 255 255 / 62%);
+}
+
+.emotion-choice:hover {
+  transform: translateY(-2px) rotate(-1deg);
 }
 
 .selected-amber {
-  color: #b45309;
-  background: #fffbeb;
-  border-color: #fcd34d;
+  color: #a76b22;
+  background: #fff3d8;
+  border-color: #eac57c;
+  box-shadow: 0 3px 0 #f4e3bf;
 }
 
 .selected-teal {
-  color: #0f766e;
-  background: #f0fdfa;
-  border-color: #5eead4;
+  color: #397c70;
+  background: #e8f4ec;
+  border-color: #a9d2bc;
+  box-shadow: 0 3px 0 #d9eadd;
 }
 
 .selected-blue {
-  color: #1d4ed8;
-  background: #eff6ff;
-  border-color: #93c5fd;
+  color: #547a9a;
+  background: #eaf2f8;
+  border-color: #b6d0e4;
+  box-shadow: 0 3px 0 #dce9f1;
 }
 
 .selected-rose {
-  color: #be123c;
-  background: #fff1f2;
-  border-color: #fda4af;
+  color: #a75558;
+  background: #fbe9e5;
+  border-color: #e5b3aa;
+  box-shadow: 0 3px 0 #f1d8d1;
 }
 
 .selected-violet {
-  color: #6d28d9;
-  background: #f5f3ff;
-  border-color: #c4b5fd;
+  color: #78678c;
+  background: #f0ebf7;
+  border-color: #c9badc;
+  box-shadow: 0 3px 0 #e2d9ed;
+}
+
+.journal-textarea {
+  min-height: 150px;
+  border: 1px solid #e8ddce;
+  color: #68564b;
+  background-color: rgb(255 255 255 / 65%);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgb(207 187 165 / 34%) 31px,
+    rgb(207 187 165 / 34%) 32px
+  );
+  background-position: 0 12px;
+  line-height: 32px;
+}
+
+.journal-textarea:focus {
+  border-color: #d6a896;
+  background-color: #fffefa;
+  --tw-ring-color: rgb(222 184 167 / 28%);
+}
+
+.save-button {
+  background: #bc786c;
+  box-shadow: 0 3px 0 #a8645a;
+}
+
+.save-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #a9655b;
+  box-shadow: 0 4px 0 #96564e;
+}
+
+.save-button:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #96564e;
+}
+
+.save-button:disabled {
+  background: #d9b8ad;
+  box-shadow: 0 3px 0 #c6a69c;
+}
+
+.record-count {
+  border: 1px solid #eadfd1;
+  color: #987e6e;
+  background: #fffdf8;
+  box-shadow: 0 2px 0 rgb(184 151 126 / 12%);
+}
+
+.journal-filters {
+  scrollbar-width: none;
+}
+
+.journal-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-active,
+.filter-inactive {
+  border: 1px solid transparent;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.filter-active {
+  color: #fffaf5;
+  background: #80685a;
+  box-shadow: 0 2px 0 #6c574a;
+}
+
+.filter-inactive {
+  border-color: #eadfd1;
+  color: #8e796a;
+  background: #fffdf8;
+}
+
+.filter-inactive:hover {
+  transform: translateY(-1px);
+  border-color: #e3c9b8;
+  background: #fff4eb;
+}
+
+.paper-note {
+  border: 1px solid #e8c6b8;
+  color: #89584e;
+  background: #fff0e9;
+}
+
+.empty-page {
+  border: 1px dashed #ddc7b4;
+  background:
+    radial-gradient(circle at 50% 20%, rgb(255 246 224 / 70%), transparent 56%),
+    rgb(255 253 248 / 82%);
+}
+
+.diary-stack {
+  padding: 2px 1px 8px;
+}
+
+.diary-card {
+  padding-left: 22px;
+  border-left-width: 4px;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.diary-card:nth-child(even) {
+  transform: rotate(0.25deg);
+}
+
+.diary-card:nth-child(odd) {
+  transform: rotate(-0.2deg);
+}
+
+.diary-card:hover {
+  z-index: 1;
+  transform: translateY(-2px) rotate(0);
+  box-shadow: 0 8px 22px -16px rgb(103 68 48 / 45%);
+}
+
+.diary-card-joy {
+  border-left-color: #e9bd73;
+}
+
+.diary-card-calm {
+  border-left-color: #9dcab1;
+}
+
+.diary-card-sad {
+  border-left-color: #a9c5dc;
+}
+
+.diary-card-angry {
+  border-left-color: #dda19b;
+}
+
+.diary-card-anxious {
+  border-left-color: #c0b0d5;
+}
+
+.diary-emotion {
+  border: 1px solid rgb(153 122 95 / 12%);
+  background: rgb(255 255 255 / 65%);
+}
+
+.diary-date {
+  color: #a18b7c;
+}
+
+.diary-content {
+  color: #6f5c50;
+}
+
+.delete-button {
+  color: #b39d8d;
+}
+
+.delete-button:hover {
+  color: #a75f59;
+  background: #f9e9e3;
+}
+
+.journal-footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  color: #b29a88;
+}
+
+.journal-footer span:first-child,
+.journal-footer span:last-child {
+  color: #d19b78;
+}
+
+@media (max-width: 480px) {
+  .write-card::before {
+    width: 68px;
+    height: 19px;
+  }
+
+  .diary-card {
+    padding-left: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

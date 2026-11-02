@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  color: #44403c;
-  background: #fffaf8;
+  font-family:
+    "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR",
+    sans-serif;
+  color: #69564a;
+  background: #f8f2e9;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,6 +21,18 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  background-color: #f8f2e9;
+  background-image:
+    radial-gradient(ellipse at 9% 9%, rgb(244 216 201 / 32%), transparent 27rem),
+    radial-gradient(ellipse at 91% 35%, rgb(220 229 206 / 34%), transparent 30rem),
+    radial-gradient(ellipse at 48% 100%, rgb(249 225 202 / 30%), transparent 34rem),
+    repeating-linear-gradient(
+      45deg,
+      rgb(148 119 92 / 1.6%) 0,
+      rgb(148 119 92 / 1.6%) 1px,
+      transparent 1px,
+      transparent 4px
+    );
 }
 
 button,
@@ -36,6 +50,6 @@ textarea:focus-visible {
 }
 
 ::selection {
-  color: #881337;
-  background: #ffe4e6;
+  color: #704840;
+  background: #f4d8c8;
 }

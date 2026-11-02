@@ -118,36 +118,36 @@ function App() {
       : diaries.filter((diary) => diary.emotion === filter)
 
   return (
-    <main className="min-h-screen px-4 pb-16 pt-8 sm:px-6 sm:pt-12">
+    <main className="journal-shell min-h-screen px-4 pb-16 pt-8 sm:px-6 sm:pt-12">
       <div className="mx-auto max-w-3xl">
-        <header className="mb-9 text-center sm:mb-12">
-          <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-100 text-3xl shadow-sm">
+        <header className="journal-header mb-9 text-center sm:mb-12">
+          <div className="journal-flower mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl text-3xl">
             🌷
           </div>
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.24em] text-rose-500">
+          <p className="journal-eyebrow mb-2 text-xs font-bold uppercase tracking-[0.24em]">
             A little space for you
           </p>
-          <h1 className="text-3xl font-bold tracking-tight text-stone-800 sm:text-4xl">
+          <h1 className="journal-title text-3xl font-bold tracking-tight sm:text-4xl">
             오늘의 마음 일기
           </h1>
-          <p className="mt-3 text-sm leading-6 text-stone-500 sm:text-base">
+          <p className="journal-subtitle mt-3 text-sm leading-6 sm:text-base">
             지금 느끼는 마음을 있는 그대로 적어보세요.
           </p>
         </header>
 
         <section
           aria-labelledby="write-title"
-          className="rounded-3xl border border-rose-100 bg-white p-5 shadow-[0_12px_40px_-24px_rgba(115,75,60,0.3)] sm:p-8"
+          className="paper-card write-card rounded-3xl p-5 sm:p-8"
         >
           <div className="mb-6 flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-rose-50 text-lg">
+            <span className="write-icon flex h-9 w-9 items-center justify-center rounded-xl text-lg">
               ✍️
             </span>
             <div>
-              <h2 id="write-title" className="font-bold text-stone-800">
+              <h2 id="write-title" className="section-title font-bold">
                 지금 어떤 기분인가요?
               </h2>
-              <p className="mt-0.5 text-xs text-stone-400">
+              <p className="section-caption mt-0.5 text-xs">
                 오늘의 감정을 골라주세요
               </p>
             </div>
@@ -167,7 +167,7 @@ function App() {
                     className={`emotion-choice rounded-2xl border px-1 py-3 text-center transition sm:py-4 ${
                       isSelected
                         ? `selected-${emotion.color} border-current`
-                        : 'border-stone-100 bg-stone-50 text-stone-500 hover:border-rose-200 hover:bg-rose-50'
+                        : 'emotion-unselected border-stone-100 text-stone-500 hover:border-rose-200 hover:bg-rose-50'
                     }`}
                   >
                     <span className="block text-2xl sm:text-3xl">
@@ -190,53 +190,51 @@ function App() {
               onChange={(event) => setContent(event.target.value)}
               placeholder="무슨 일이 있었나요? 어떤 생각이 들었나요?"
               rows={5}
-              className="w-full resize-y rounded-2xl border border-stone-200 bg-stone-50/70 px-4 py-4 text-sm leading-7 text-stone-700 outline-none transition placeholder:text-stone-400 focus:border-rose-300 focus:bg-white focus:ring-4 focus:ring-rose-100 sm:px-5"
+              className="journal-textarea w-full resize-y rounded-2xl px-4 py-4 text-sm leading-7 outline-none transition placeholder:text-stone-400 focus:border-rose-300 focus:ring-4 focus:ring-rose-100 sm:px-5"
             />
             <div className="mt-4 flex flex-col-reverse items-stretch justify-between gap-3 sm:flex-row sm:items-center">
-              <p className="text-xs text-stone-400">
+              <p className="section-caption text-xs">
                 당신의 마음을 천천히 들여다보는 시간
               </p>
               <button
                 type="submit"
                 disabled={saving || !content.trim() || !selectedEmotion}
-                className="rounded-xl bg-rose-500 px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-rose-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500 disabled:cursor-not-allowed disabled:bg-rose-200"
+                className="save-button rounded-xl px-6 py-3 text-sm font-bold text-white transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500 disabled:cursor-not-allowed"
               >
-                {saving ? '저장 중...' : '일기 저장하기'}
+                {saving ? '저장 중...' : '일기 저장하기  ✿'}
               </button>
             </div>
           </form>
         </section>
 
-        <section aria-labelledby="entries-title" className="mt-10 sm:mt-12">
+        <section aria-labelledby="entries-title" className="diary-entries mt-10 sm:mt-12">
           <div className="mb-5 flex items-end justify-between gap-3">
             <div>
-              <p className="mb-1 text-xs font-bold uppercase tracking-[0.18em] text-rose-400">
+              <p className="journal-eyebrow mb-1 text-xs font-bold uppercase tracking-[0.18em]">
                 Your moments
               </p>
               <h2
                 id="entries-title"
-                className="text-xl font-bold text-stone-800 sm:text-2xl"
+                className="section-title text-xl font-bold sm:text-2xl"
               >
                 마음 기록
               </h2>
             </div>
-            <span className="rounded-full bg-white px-3 py-1.5 text-xs font-medium text-stone-500 shadow-sm">
+            <span className="record-count rounded-full px-3 py-1.5 text-xs font-medium">
               {diaries.length}개의 기록
             </span>
           </div>
 
           <div
             aria-label="감정별 일기 필터"
-            className="mb-5 flex gap-2 overflow-x-auto pb-2"
+            className="journal-filters mb-5 flex gap-2 overflow-x-auto pb-2"
           >
             <button
               type="button"
               aria-pressed={filter === 'all'}
               onClick={() => setFilter('all')}
               className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition ${
-                filter === 'all'
-                  ? 'bg-stone-800 text-white'
-                  : 'bg-white text-stone-500 hover:bg-rose-50'
+                filter === 'all' ? 'filter-active' : 'filter-inactive'
               }`}
             >
               전체 보기
@@ -249,8 +247,8 @@ function App() {
                 onClick={() => setFilter(emotion.value)}
                 className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition ${
                   filter === emotion.value
-                    ? 'bg-rose-500 text-white'
-                    : 'bg-white text-stone-500 hover:bg-rose-50'
+                    ? 'filter-active'
+                    : 'filter-inactive'
                 }`}
               >
                 <span className="mr-1">{emotion.emoji}</span>
@@ -262,7 +260,7 @@ function App() {
           {error && (
             <div
               role="alert"
-              className="mb-5 flex items-start gap-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800"
+              className="paper-note mb-5 flex items-start gap-3 rounded-2xl px-4 py-3 text-sm"
             >
               <span aria-hidden="true">⚠️</span>
               <p className="min-w-0 flex-1 leading-6">{error}</p>
@@ -279,47 +277,47 @@ function App() {
           {loading ? (
             <div
               role="status"
-              className="flex min-h-44 flex-col items-center justify-center rounded-3xl border border-stone-100 bg-white text-sm text-stone-500"
+              className="paper-card flex min-h-44 flex-col items-center justify-center rounded-3xl text-sm text-stone-500"
             >
               <span className="mb-3 h-7 w-7 animate-spin rounded-full border-2 border-rose-200 border-t-rose-500" />
               일기를 불러오고 있어요...
             </div>
           ) : filteredDiaries.length === 0 ? (
-            <div className="rounded-3xl border border-dashed border-rose-200 bg-white/70 px-6 py-12 text-center">
+            <div className="empty-page rounded-3xl px-6 py-12 text-center">
               <span className="text-4xl" aria-hidden="true">
                 {filter === 'all' ? '📔' : emotionByValue[filter].emoji}
               </span>
-              <p className="mt-4 font-semibold text-stone-700">
+              <p className="section-title mt-4 font-semibold">
                 {filter === 'all'
                   ? '아직 기록이 없어요'
                   : `${emotionByValue[filter].label} 기록이 아직 없어요`}
               </p>
-              <p className="mt-1 text-sm text-stone-400">
+              <p className="section-caption mt-1 text-sm">
                 오늘의 마음을 첫 일기로 남겨보세요.
               </p>
             </div>
           ) : (
-            <div className="space-y-3">
+            <div className="diary-stack space-y-3">
               {filteredDiaries.map((diary) => {
                 const emotion = emotionByValue[diary.emotion]
 
                 return (
                   <article
                     key={diary.id}
-                    className="rounded-2xl border border-stone-100 bg-white p-5 shadow-sm transition hover:border-rose-100 sm:p-6"
+                    className={`diary-card diary-card-${diary.emotion} rounded-2xl p-5 transition sm:p-6`}
                   >
                     <div className="mb-3 flex items-center justify-between gap-3">
                       <div className="flex min-w-0 items-center gap-2.5">
-                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-rose-50 text-2xl">
+                        <span className="diary-emotion flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-2xl">
                           {emotion?.emoji ?? '💭'}
                         </span>
                         <div className="min-w-0">
-                          <p className="text-sm font-bold text-stone-700">
+                          <p className="section-title text-sm font-bold">
                             {emotion?.label ?? '마음 기록'}
                           </p>
                           <time
                             dateTime={diary.created_at}
-                            className="mt-0.5 block truncate text-xs text-stone-400"
+                            className="diary-date mt-0.5 block truncate text-xs"
                           >
                             {formatDate(diary.created_at)}
                           </time>
@@ -330,7 +328,7 @@ function App() {
                         aria-label="일기 삭제"
                         disabled={deletingId !== null}
                         onClick={() => handleDelete(diary.id)}
-                        className="shrink-0 rounded-lg p-2 text-stone-400 transition hover:bg-rose-50 hover:text-rose-600 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="delete-button shrink-0 rounded-lg p-2 transition disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         {deletingId === diary.id ? (
                           <span className="text-xs">삭제 중</span>
@@ -352,7 +350,7 @@ function App() {
                         )}
                       </button>
                     </div>
-                    <p className="whitespace-pre-wrap break-words text-sm leading-7 text-stone-600">
+                    <p className="diary-content whitespace-pre-wrap break-words text-sm leading-7">
                       {diary.content}
                     </p>
                   </article>
@@ -362,8 +360,10 @@ function App() {
           )}
         </section>
 
-        <footer className="mt-12 text-center text-xs text-stone-400">
-          오늘의 마음도 소중한 당신의 일부예요. 🌱
+        <footer className="journal-footer mt-12 text-center text-xs">
+          <span aria-hidden="true">✷</span>
+          <span>오늘의 마음도 소중한 당신의 일부예요.</span>
+          <span aria-hidden="true">✷</span>
         </footer>
       </div>
     </main>
